@@ -4,20 +4,23 @@
 <div class="container my-3">
     <table class="table">
         <thead>
-        <tr class="table-dark">
+        <tr class="text-center table-dark">
             <th>번호</th>
-            <th>제목</th>
+            <th style="width:50%">제 목</th>
+            <th>글 쓴 이</th>
             <th>작성일시</th>
         </tr>
         </thead>
         <tbody>
         {% if question_list %}
         {% for question in question_list %}
+        <tr class="text-center">
         <tr>
             <td>
                 <!-- 번 호 = 전 체 건 수 - 시 작 인 덱 스 - 현 재 인 덱 스 + 1 -->
                 {{ question_list.paginator.count|sub:question_list.start_index|sub:forloop.counter0|add:1 }}
             </td>
+            <td class="text-start">
             <td>{{ forloop.counter }}</td>
             <td>
                 <a href="{% url 'pybo:detail' question.id %}">{{ question.subject }}</a>
@@ -25,12 +28,13 @@
                 <span class="text-danger small mx-2">{{ question.answer_set.count }}</span>
                 {% endif %}
             </td>
+            <td>{{ question.author.username }}</td>
             <td>{{ question.create_date }}</td>
         </tr>
         {% endfor %}
         {% else %}
         <tr>
-            <td colspan="3">질문이 없습니다.</td>
+            <td colspan="4">질 문 없 다.</td>
         </tr>
         {% endif %}
         </tbody>

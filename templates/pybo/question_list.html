@@ -20,8 +20,6 @@
                 <!-- 번 호 = 전 체 건 수 - 시 작 인 덱 스 - 현 재 인 덱 스 + 1 -->
                 {{ question_list.paginator.count|sub:question_list.start_index|sub:forloop.counter0|add:1 }}
             </td>
-            <td class="text-start">
-            <td>{{ forloop.counter }}</td>
             <td>
                 <a href="{% url 'pybo:detail' question.id %}">{{ question.subject }}</a>
                 {% if question.answer_set.count > 0 %}
